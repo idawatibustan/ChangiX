@@ -10,6 +10,10 @@ class Recommender:
         self.categories_disliked = []
 
     def checkpoint_info(self):
+        '''
+        Call this method to get the next available checkpoint to be loaded into the card.
+        Returns None if no other checkpoints available.
+        '''
         return None if self.q.empty() else self.q.get().as_dict()
 
     def like_checkpoint(self, checkpoint):
