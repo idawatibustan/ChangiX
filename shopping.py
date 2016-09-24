@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-class shopping:
+class Shopping:
     def __init__(self, cps):
         self.shoppes = []
         self.items = []
@@ -21,7 +21,7 @@ class shopping:
         for shop in self.shoppes:
             items = shop.top_five()
 
-class purchases:
+class Purchases:
     def __init__(self):
         self.status = None
         # processed, dispatched, delivered
@@ -45,7 +45,7 @@ class purchases:
     def isdelivered():
         return self.status == 'delivered'
 
-class shop:
+class Shop:
     def __init__(self):
         self.name = None
         self.items = []
@@ -62,7 +62,7 @@ class shop:
     def top_five(self):
         return self.items[0:4]
 
-class item:
+class Item:
     def __init__(self, brand, name, price, image):
         self.brand = None
         self.name = None

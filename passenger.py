@@ -3,7 +3,7 @@ from datetime import datetime
 # import barcode_reader
 # import flight_reader
 
-class passenger:
+class Passenger:
     def __init__(self, id):
         b = barcode_reader(id)
 
