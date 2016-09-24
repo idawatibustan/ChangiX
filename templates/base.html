@@ -2,11 +2,65 @@
 <html lang="en">
 <head>
     <title>Changi Airport Group Hackathon Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        .lightbox {
+            z-index: 999;
+            display: none;
+            position: absolute;
+            height: calc(100% - 200px);
+            width: calc(100% - 200px);
+            left: 100px;
+            top: 100px;
+            border-radius: 5px;
+            border: 1px solid #000;
+            background: #fff;
+        }
+        .lightbox.visible {
+            display: block;
+        }
+        .close_button {
+            display: block;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 15px;
+            color: #fff;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: -15px -15px 0 0;
+            text-align: center;
+            line-height: 30px;
+        }
     </style>
 </head>
 <body>
     {% block body %}
     {% endblock %}
+    <script>
+        document.querySelectorAll(".lightbox_link").forEach(function(el) {
+                var lightbox = document.querySelector("#"+el.href.split("#")[1]);
+                // Create close button
+                var close = document.createElement("span");
+                close.classList.add("close_button");
+                close.innerText = "X";
+                lightbox.appendChild(close);
+                el.addEventListener("click", function(evt) {
+                    evt.preventDefault();
+                    lightbox.classList.toggle("visible");
+                    });
+                close.addEventListener("click", function(evt) {
+                    evt.preventDefault();
+                    lightbox.classList.toggle("visible");
+                    });
+                });
+    </script>
 </body>
 </html>

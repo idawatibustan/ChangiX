@@ -1,5 +1,71 @@
 {% extends "base.html" %}
 {% block body %}
-<section class="section">
+<section class="welcome">
+    <h1>Placeholder title</h1>
 </section>
+<section class="main">
+    <h2>Choose an option</h2>
+    <a href="#barcode_scanner" class="lightbox_link">Camera</a>
+    <a href="#enter_code" class="lightbox_link">Enter code</a>
+</section>
+<div id="barcode_scanner" class="lightbox">
+    <!--<a href="#" class="toggle_video">Toggle video</a>-->
+    <a href="#" class="capture_image">Capture image</a>
+    <video id="video" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas"></canvas>
+</div>
+<div id="enter_code" class="lightbox">
+</div>
+<script>
+var mediaSources = [],
+    toggle = 1,
+    canvas = document.createElement("canvas"),
+    context = canvas.getContext("2d");
+document.querySelector(".lightbox_link").addEventListener("click", function(evt) {
+    var video = document.getElementById('video');
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        //console.log(navigator.mediaDevices.enumerateDevices());
+        navigator.mediaDevices.enumerateDevices().then(function(ul) {
+            ul.forEach(function (li) {
+                if (li.kind == "videoinput") {
+                    mediaSources.push(li["deviceId"].toString());
+                    };
+                });
+                navigator.mediaDevices.getUserMedia({  video: {
+                       optional: [{sourceId: mediaSources[toggle]}]
+                        } }).then(function(stream) {
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                });
+        });
+    }
+});
+document.querySelector(".capture_image").addEventListener("click", function(evt) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        xhttp.open("POST", "/scan", true);
+        var video = document.querySelector("#video");
+        canvas.width = video.offsetWidth;
+        canvas.height = video.offsetHeight;
+        //canvas.width = 300;
+        //canvas.height = 100;
+        context.drawImage(video, 0, 0, video.offsetWidth, video.offsetHeight);
+        var data = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "");
+        xhttp.send(data);
+        });
+//document.querySelector(".toggle_video").addEventListener("click", function(evt) {
+//    toggle = (( toggle == 0 ) ? 1 : 0);
+//    navigator.mediaDevices.getUserMedia({  video: {
+//           optional: [{sourceId: mediaSources[toggle]}]
+//            } }).then(function(stream) {
+//        video.src = window.URL.createObjectURL(stream);
+//        video.play();
+//    });
+//});
+</script>
 {% endblock %}
