@@ -1,27 +1,29 @@
 [
     {
-        "category": "Food", 
-        "name": "Ajisen Ramen", 
-        "subcategory": "Japanese"
-    }, 
+        "category": "Food",
+        "name": "Burger King",
+        "subcategory": "Fast Food",
+        "description": "",
+        "image_url": ""
+    },
     {
-        "category": "Food", 
-        "name": "Indonesian Barbequeue", 
+        "category": "Food",
+        "name": "Indonesian Barbequeue",
         "subcategory": "Indonesian"
-    }, 
+    },
     {
-        "category": "Leisure", 
-        "name": "Giant Slide", 
+        "category": "Leisure",
+        "name": "Giant Slide",
         "subcategory": "Entertainment"
-    }, 
+    },
     {
-        "category": "Retail", 
-        "name": "Coco Chanel", 
+        "category": "Retail",
+        "name": "Coco Chanel",
         "subcategory": "Cosmetics"
-    }, 
+    },
     {
-        "category": "Leisure", 
-        "name": "Airport Wellness Oasis", 
+        "category": "Leisure",
+        "name": "Airport Wellness Oasis",
         "subcategory": "Beauty & Wellness"
     }
 ]

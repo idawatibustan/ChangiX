@@ -4,7 +4,11 @@ from random import shuffle
 import json
 
 class Recommender:
-    def __init__(self, passenger, demo):
+    def __init__(self, passenger=None, demo=False):
+        '''
+        For demo purposes, initalize the class with the demo parameter:
+        r = Recommender(passenger, demo=True)
+        '''
         self.passenger = passenger
         self.is_demo = demo
         self.checkpoints_liked = []
