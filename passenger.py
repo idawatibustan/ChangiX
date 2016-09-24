@@ -28,7 +28,7 @@ class Passenger:
         f = self.flight_reader(self.flightnum)
         self.boardtime = f.get('boardingtime')
         self.depttime = f.get('departtime')
-        self.boardgate = flight.gate
+        self.boardgate = f.get('gate')
 
     def barcode_reader(self, id):
         return dict({'firstname': "Juho",
@@ -42,4 +42,5 @@ class Passenger:
 
     def flight_reader(self, num):
         return dict({'boardingtime': datetime.now(),
-                    'departtime': datetime.now() })
+                    'departtime': datetime.now(),
+                    'gate': "5D" })
