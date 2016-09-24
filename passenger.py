@@ -8,10 +8,12 @@ class Passenger:
         b = self.barcode_reader(id)
 
         self.uid = "432"
-        self.name = b.get('firstname', "Jane") + " " + b.get('lastname', "Doe")
+        self.firstname = b.get('firstname', "Jane")
+        self.lastname = b.get('lastname', "Doe")
         self.origin = b.get('origin', "AAA")
         self.dest = b.get('destination', "ZZZ")
-        self.flightnum = b.get('airlines', "XX")
+        self.airlines = b.get('airlines', "XX")
+        self.flightnum = b.get('flightnum', "123")
         self.date = b.get('date')
         self.seat = b.get('seat')
         self.seq = b.get('seq')
@@ -21,7 +23,7 @@ class Passenger:
         self.currloc = None
         self.boardtime = None
         self.depttime = None
-        self.boardgate = None
+        self.gate = None
 
         self.updateflight()
 
@@ -29,14 +31,15 @@ class Passenger:
         f = self.flight_reader(self.flightnum)
         self.boardtime = f.get('boardingtime')
         self.depttime = f.get('departtime')
-        self.boardgate = f.get('gate')
+        self.gate = f.get('gate')
 
     def barcode_reader(self, id):
-        return dict({'firstname': "Juho",
+        return dict({'firstname': "Janet",
                     'lastname': "Lee",
-                    'origin': "DUB",
+                    'origin': "KOR",
                     'destination': "SIN",
                     'airlines': "SQ",
+                    'flightnum': "316",
                     'date': "25Sept",
                     'seat': "1A",
                     'seq': 23 })
