@@ -7,6 +7,7 @@ class Passenger:
     def __init__(self, id):
         b = self.barcode_reader(id)
 
+        self.uid = "432"
         self.name = b.get('firstname', "Jane") + " " + b.get('lastname', "Doe")
         self.origin = b.get('origin', "AAA")
         self.dest = b.get('destination', "ZZZ")
