@@ -5,29 +5,25 @@
         "subcategory": "Fast Food",
         "description": "Beef burgers at BURGER KING are made of 100% beef and flame-grilled to perfection.",
         "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/burger-king.img.png"
-    },
-    {
+    }, {
         "category": "Food",
         "name": "1983 Taste of Nanyang",
         "subcategory": "Singaporean",
         "description": "Experience a bygone era through glorious local dishes like the signature Nasi Lemak Set and Mee Rebus.",
         "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/1983-taste-of-nanyang.img.png"
-    },
-    {
+    }, {
         "category": "Leisure",
         "name": "The Slide @ T3",
         "subcategory": "Entertainment",
         "description": "Whizz down The Slide@T3, Singapore's tallest slide and the world's tallest slide in an airport. At 12 metres high (4 storeys tall), shriek your way down while reaching speeds of up to 6 metres per second! ",
         "image_url": "http://www.changiairport.com/content/dam/cag/5-airport-experience/3-services-facilities/the_slide_t3_900.jpg"
-    },
-    {
+    }, {
         "category": "Retail",
         "name": "Cosmetics & Perfumes by The Shilla",
         "subcategory": "Cosmetics",
         "description": "Cosmetics & Perfumes by The Shilla Duty Free stocks the widest ranges of beauty and skincare brands in Singapore and Asia-Pacific airports.",
         "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/cosmetics---perfumes-by-shilla.img.png"
-    },
-    {
+    }, {
         "category": "Leisure",
         "name": "Airport Wellness Oasis",
         "subcategory": "Beauty & Wellness",

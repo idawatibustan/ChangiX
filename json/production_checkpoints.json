@@ -1,27 +1,93 @@
 [
     {
         "category": "Food",
-        "name": "Ajisen Ramen",
-        "subcategory": "Japanese"
-    },
-    {
+        "name": "Burger King",
+        "subcategory": "Fast Food",
+        "description": "Beef burgers at BURGER KING are made of 100% beef and flame-grilled to perfection.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/burger-king.img.png"
+    }, {
         "category": "Food",
-        "name": "Indonesian Barbequeue",
-        "subcategory": "Indonesian"
-    },
-    {
+        "name": "1983 Taste of Nanyang",
+        "subcategory": "Singaporean",
+        "description": "Experience a bygone era through glorious local dishes like the signature Nasi Lemak Set and Mee Rebus.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/1983-taste-of-nanyang.img.png"
+    }, {
         "category": "Leisure",
-        "name": "Giant Slide",
-        "subcategory": "Entertainment"
-    },
-    {
+        "name": "The Slide @ T3",
+        "subcategory": "Entertainment",
+        "description": "Whizz down The Slide@T3, Singapore's tallest slide and the world's tallest slide in an airport. At 12 metres high (4 storeys tall), shriek your way down while reaching speeds of up to 6 metres per second! ",
+        "image_url": "http://www.changiairport.com/content/dam/cag/5-airport-experience/3-services-facilities/the_slide_t3_900.jpg"
+    }, {
         "category": "Retail",
-        "name": "Coco Chanel",
-        "subcategory": "Cosmetics"
-    },
-    {
+        "name": "Cosmetics & Perfumes by The Shilla",
+        "subcategory": "Cosmetics",
+        "description": "Cosmetics & Perfumes by The Shilla Duty Free stocks the widest ranges of beauty and skincare brands in Singapore and Asia-Pacific airports.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/cosmetics---perfumes-by-shilla.img.png"
+    }, {
         "category": "Leisure",
         "name": "Airport Wellness Oasis",
-        "subcategory": "Beauty & Wellness"
+        "subcategory": "Beauty & Wellness",
+        "description": "Satisfy your desire for wellness and relaxation. Recharge with a massage, shower, manicure and more.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png"
+    }, {
+        "category": "Food",
+        "name": "Chutney Mary",
+        "subcategory": "Indian",
+        "description": "Savour the flavours of India with delicious street snacks at Chutney Mary! Be it Pani Puri from Calcutta, Pav Bhaji from Mumbai, or Papri Chaat from Jaipur, there is myriad of tasty delights simply perfect for everyone.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/chutney-mary.img.png"
+    }, {
+        "category": "Food",
+        "name": "Lerk Thai",
+        "subcategory": "Thai",
+        "description": "The perfect pit-stop for a delicious Asian meal can be found at Lerk Thai. With the artful skills of its team of Thai chefs, Lerk Thai offers a bountiful mix of Thai specialties that is bound to leave you wondering if you landed in the land of smiles.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/lerk-thai.img.png"
+    }, {
+        "category": "Food",
+        "name": "Peach Garden Chinese Dining",
+        "subcategory": "Chinese",
+        "description": "Peach Garden Chinese Dining is set to become a vibrant dining destination at Singapore Changi Airport Terminal 2, indulging diners from all over the world on a gourmet journey of authentic, traditional Chinese food with a contemporary flair.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/peach-garden-chinese-dining.img.png"
+    }, {
+        "category": "Leisure",
+        "name": "Cactus Garden",
+        "subcategory": "Nature",
+        "description": "Visit this rooftop garden of over 100 species of cacti and arid plants from Africa and the Americas. Chill out at the bar with cocktails and beers before your flight.",
+        "image_url": "http://www.changiairport.com/content/cag/en/airport-experience/attractions-and-services/cactus-garden.img.png"
+    }, {
+        "category": "Leisure",
+        "name": "Hair, Beauty and Spa",
+        "subcategory": "Beauty & Wellness",
+        "description": "Pamper yourself and step out looking your best with Changi's hair and beauty services.",
+        "image_url": "http://www.changiairport.com/content/cag/en/airport-experience/attractions-and-services/hair-and-beauty.img.png"
+    }, {
+        "category": "Leisure",
+        "name": "Interactive Art",
+        "subcategory": "Arts",
+        "description": "Try your hand at wood block rubbing and make your own wood block print with icons inspired by popular culture.",
+        "image_url": "http://www.changiairport.com/content/cag/en/airport-experience/attractions-and-services/interactive-art.img.png"
+    }, {
+        "category": "Retail",
+        "name": "Mini Toons",
+        "subcategory": "Gifts & Souvenirs",
+        "description": "Step into a world of adorable toys and trendy lifestyle products at Mini Toons! With an extraordinary variety of fun gift ideas for children and teens, you can rest assured that your little ones will truly be delighted.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/bee-cheng-hiang.img.png"
+    }, {
+        "category": "Retail",
+        "name": "Bratpack",
+        "subcategory": "Bags",
+        "description": "At Bratpack, discover a range of apparel, footwear and accessories that complements the active lifestyle of the young.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/bratpack.img.png"
+    }, {
+        "category": "Retail",
+        "name": "Cotton On",
+        "subcategory": "Clothing Apparel",
+        "description": "Cotton On delivers fast fashion for style-savvy guys and girls at stunningly low prices.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/cotton-on.img.png"
+    }, {
+        "category": "Retail",
+        "name": "Rolex",
+        "subcategory": "Luxury Watches",
+        "description": "This leading Swiss watchmaker is known for its quality timepieces and watchmaking know-how.",
+        "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/rolex.img.png"
     }
 ]
