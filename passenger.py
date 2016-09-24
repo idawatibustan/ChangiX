@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Passenger:
     def __init__(self, id):
-        b = barcode_reader(id)
+        b = self.barcode_reader(id)
 
         self.name = b.get('firstname', "Jane") + " " + b.get('lastname', "Doe")
         self.origin = b.get('origin', "AAA")
@@ -25,7 +25,21 @@ class Passenger:
         self.updateflight()
 
     def updateflight(self):
-        f = flight_reader(self.flightnum)
-        self.boardtime = f.boardingtime
-        self.depttime = f.departtime
+        f = self.flight_reader(self.flightnum)
+        self.boardtime = f.get('boardingtime')
+        self.depttime = f.get('departtime')
         self.boardgate = flight.gate
+
+    def barcode_reader(id):
+        return dict({'firstname': "Juho",
+                    'lastname': "Lee",
+                    'origin': "DUB",
+                    'destination': "SIN",
+                    'airlines': "SQ",
+                    'date': "25Sept",
+                    'seat': "1A",
+                    'seq': 23 })
+
+    def flight_reader(num):
+        return dict({'boardingtime': datetime.now(),
+                    'departtime': datetime.now() })
