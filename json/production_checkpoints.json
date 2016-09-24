@@ -1,0 +1,27 @@
+[
+    {
+        "category": "Food",
+        "name": "Ajisen Ramen",
+        "subcategory": "Japanese"
+    },
+    {
+        "category": "Food",
+        "name": "Indonesian Barbequeue",
+        "subcategory": "Indonesian"
+    },
+    {
+        "category": "Leisure",
+        "name": "Giant Slide",
+        "subcategory": "Entertainment"
+    },
+    {
+        "category": "Retail",
+        "name": "Coco Chanel",
+        "subcategory": "Cosmetics"
+    },
+    {
+        "category": "Leisure",
+        "name": "Airport Wellness Oasis",
+        "subcategory": "Beauty & Wellness"
+    }
+]
