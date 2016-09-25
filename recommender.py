@@ -42,6 +42,24 @@ class Recommender:
         self.q = new_q
 
     def recommendations(self):
+        if self.is_demo:
+            # TODO: fix this someday.
+            return [
+                {
+                    "category": "Food",
+                    "name": "1983 Taste of Nanyang",
+                    "subcategory": "Singaporean",
+                    "description": "Experience a bygone era through glorious local dishes like the signature Nasi Lemak Set and Mee Rebus.",
+                    "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/dining/1983-taste-of-nanyang.img.png"
+                }, {
+                    "category": "Leisure",
+                    "name": "Airport Wellness Oasis",
+                    "subcategory": "Beauty & Wellness",
+                    "description": "Satisfy your desire for wellness and relaxation. Recharge with a massage, shower, manicure and more.",
+                    "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png"
+                }
+            ]
+
         return self.checkpoints_liked
 
     def _sort(self, checkpoints):
