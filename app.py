@@ -34,6 +34,7 @@ def helper(passenger):
         d['title'] = chk['name']
         max_char = 50 # KYLE: change to vary maximum characters allowed
         d['subtitle'] = chk['description'][:max_char] + '...'
+        stack.append(d)
 
     stack.append({
         'time': (curr_time - timedelta(minutes=randint(30,80))).strftime("%H:%M"),
