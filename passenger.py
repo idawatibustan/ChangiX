@@ -41,23 +41,27 @@ class Passenger:
                     'departtime': datetime.now(),
                     'gate': "5D" })
 
-def barcode_decoder(id):
-    id = id.split()
-    print id
-    for i in id:
-        #parse i here = just harcode the format
-
-    return dict({'firstname': "Janet",
-                'lastname': "Lee",
-                'origin': "KOR",
-                'destination': "SIN",
-                'airlines': "SQ",
-                'flightnum': "316",
-                'date': "25Sept",
-                'seat': "1A",
-                'seq': 23 })
+def barcode_decoder(raw_barcode_string):
+    # As per IATA 2D Boarding pass format. See http://www.iata.org/whatwedo/stb/documents/bcbp_implementation_guidev4_jun2009.pdf
+    passenger_name = raw_barcode_string[2:22].strip()
+    origin = raw_barcode_string[30:33].strip()
+    destination = raw_barcode_string[33:36].strip()
+    airline = raw_barcode_string[36:39].strip()
+    flightnum = raw_barcode_string[39:44].strip()
+    date = raw_barcode_string[44:47].strip()
+    seat = raw_barcode_string[48:52].strip()
+    seq = raw_barcode_string[52:57].strip()
+    passengerstatus = raw_barcode_string[57:58].strip()
+    return dict({'firstname': passenger_name[passenger_name.index('/')+1:],
+                'lastname': passenger_name[:passenger_name.index('/')],
+                'origin': origin,
+                'destination': destination,
+                'airline': airline,
+                'flightnum': flightnum,
+                'date': date, # 209 means 209th day of the year
+                'seat': seat,
+                'seq': seq,
+                'passengerstatus': passengerstatus})
 
 if __name__ == '__main__':
     p = Passenger(None)
-
-#M1LEE/JUHO            E8EKVV7 SINHKGCX 0710 209Y056K0224 34A&gt;1180      B                29                                         8
