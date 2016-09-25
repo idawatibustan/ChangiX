@@ -46,7 +46,7 @@ def barcode_decoder(raw_barcode_string):
     passenger_name = raw_barcode_string[2:22].strip()
     origin = raw_barcode_string[30:33].strip()
     destination = raw_barcode_string[33:36].strip()
-    airline = raw_barcode_string[36:39].strip()
+    airlines = raw_barcode_string[36:39].strip()
     flightnum = raw_barcode_string[39:44].strip()
     date = raw_barcode_string[44:47].strip()
     seat = raw_barcode_string[48:52].strip()
@@ -56,7 +56,7 @@ def barcode_decoder(raw_barcode_string):
                 'lastname': passenger_name[:passenger_name.index('/')],
                 'origin': origin,
                 'destination': destination,
-                'airline': airline,
+                'airlines': airlines,
                 'flightnum': flightnum,
                 'date': date, # 209 means 209th day of the year
                 'seat': seat,
