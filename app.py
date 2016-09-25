@@ -106,5 +106,9 @@ def swipe(demo):
     else:
         return redirect(url_for("home"))
 
+@app.route("/explore")
+def explore():
+    return render_template("explore.html", data=data)
+
 http_server = WSGIServer(("", PORT), app)
 http_server.serve_forever()

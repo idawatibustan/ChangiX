@@ -9,19 +9,36 @@
             padding: 0;
             font-family: sans-serif;
         }
+        .darken {
+            z-index: 998;
+            display: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
         .lightbox {
             z-index: 999;
             display: none;
             position: absolute;
-            height: calc(100% - 200px);
-            width: calc(100% - 200px);
-            left: 100px;
-            top: 100px;
+            height: calc(100% - 50px);
+            width: calc(100% - 50px);
+            left: 25px;
+            top: 25px;
             border-radius: 5px;
             border: 1px solid #000;
             background: #fff;
         }
-        .lightbox.visible {
+        .lightbox > div {
+            height: calc(100% - 20px);
+            width: calc(100% - 20px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .lightbox.visible, .darken.visible {
             display: block;
         }
         .close_button {
@@ -39,12 +56,36 @@
             text-align: center;
             line-height: 30px;
         }
+        video {
+            width: 100%;
+        }
+        .video_overlay {
+            display: block;
+            border: 1px solid #f00;
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            right: 20%;
+            bottom: 40%;
+        }
+        .video_container {
+            float: left;
+            position: relative;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <img src="http://bintan-resorts.com/visitors/wp-content/uploads/sites/3/2014/03/CHS_CMYK_Pos-copy1.jpg">
+    {% if "passenger" in session %}
+    {% endif %}
+    </nav>
     {% block body %}
     {% endblock %}
     <script>
+        var darken = document.createElement("div");
+        darken.className = "darken";
+        document.querySelector("body").appendChild(darken);
         document.querySelectorAll(".lightbox_link").forEach(function(el) {
                 var lightbox = document.querySelector("#"+el.href.split("#")[1]);
                 // Create close button
@@ -55,10 +96,12 @@
                 el.addEventListener("click", function(evt) {
                     evt.preventDefault();
                     lightbox.classList.toggle("visible");
+                    darken.classList.toggle("visible");
                     });
                 close.addEventListener("click", function(evt) {
                     evt.preventDefault();
                     lightbox.classList.toggle("visible");
+                    darken.classList.toggle("visible");
                     });
                 });
     </script>

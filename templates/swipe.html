@@ -11,27 +11,48 @@
               width: 300px;
               height: 400px;
               display: block;
-              background: #666;
               -webkit-transform-origin: 50% 99%;
               transform-origin: 50% 99%;
             }
             .cardcontainer {
               padding: 10px;
-              text-align: center;
+              text-align: left;
               width: 300px;
+              max-width: 300px;
               margin: 0 auto;
+            }
+
+            li span {
+                display: block;
+            }
+            .s_name {
+                font-size: 20px;
+            }
+            .s_description {
+                margin-top: 10px;
             }
 
             /* List functionality */
             .list .cardlist {
-              margin: 0;
+              margin: 0 0 0 15px;
               padding: 0;
+              max-width: 300px;
+              width: 300px;
+              height: 420px;
             }
             .tinderesque .list .card {
               display: none;
             }
             .tinderesque .list .current {
               display: block;
+            }
+
+            .current {
+                border: 1px solid #ccc;
+                width: 300px;
+                height: 410px;
+                border-radius: 10px;
+                margin-top: 10px;
             }
 
             /* Button designs */
@@ -46,26 +67,35 @@
             }
 
             .cardcontainer button {
-              background: #0c0;
-              border: none;
+              background-image: url("http://media.148apps.com/screenshots/547702041/us-iphone-1-tinder.jpeg");
+              background-repeat: no-repeat;
+              border: 10px solid #efefef;
               color: #fff;
               border-radius: 50% 50%;
-              width: 30px;
-              height: 30px;
+              width: 100px;
+              height: 100px;
               line-height: 30px;
               margin: 0 .5em;
               display: inline-block;
             }
             .cardcontainer button:focus {
               outline: 0;
-              background: #0f0;
             }
             .cardcontainer .but-nope {
-              background: #c00;
+                background-position: -222px -1018px;
+                position: absolute;
+                bottom: 15px;
+                left: 60px;
             }
             .cardcontainer .but-nope:focus {
               outline: 0;
-              background: #f00;
+            }
+
+            .cardcontainer .but-yay {
+                background-position: -338px -1020px;
+                position: absolute;
+                bottom: 15px;
+                right: 60px;
             }
 
             .tinderesque .cardcontainer.yes .card {
@@ -128,10 +158,13 @@
         </style>
         <style type="text/css">
             body {
+                max-width: 300px;
+                overflow: hidden;
               font-family: helvetica, arial, sans-serif;
-              background: #333;
-              background: linear-gradient(#333,#666);
-              color: #ccc;
+              /*background: #333;
+              background: linear-gradient(#333,#666);*/
+              background: #fff;
+              color: #666;
               font-size: 16px;
               padding: 0;
               margin: 0;
@@ -172,8 +205,19 @@
               animation: nope 0.7s ease-out;
             }
             .card {
-              background: powderblue;
-              color: #000;
+              /*background: powderblue;*/
+              max-width: 300px;
+              overflow: hidden;
+            }
+            .image_container {
+                width: 100%;
+                height: 230px;
+                background-size: cover;
+                background-position: center center;
+            }
+            .content_container {
+                padding: 10px;
+                overflow-y: auto;
             }
             .list ul.cardlist {
               padding-bottom: 10px;
@@ -188,7 +232,7 @@
 
         <div class="cardcontainer list">
           <ul class="cardlist">
-              <li class="card current">
+              <!--li class="card current">
                   <div>
                       <div>
                           <img src="http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png" style="object-fit:cover; width:100%; height:auto;" />
@@ -215,21 +259,21 @@
                           </p>
                       </div>
                   </div>
-              </li>
-              <!-- {% for card in data["checkpoint_info"] %}
+              </li-->
+              {% for card in data["checkpoint_info"] %}
               <li class="card{% if loop.first %} current{% endif %}">
-                        <div>
-                            <img src="{{ card["image_url"] }}">
+                            <div class="image_container" style="background-image: url('{{ card["image_url"] }}')">
+                            </div>
+                        <div class="content_container">
                             <span class="s_name">{{ card["name"] }}</span>
-                            <span class="s_category">{{ card["category"] }}</span>
-                            <span class="s_subcategory">{{ card["subcategory"] }}</span>
+                            <span class="s_category">{{ card["category"] }} | {{ card["subcategory"] }}</span>
                             <span class="s_description">{{ card["description"] }}</span>
                         </div>
               </li>
-              {% endfor %} -->
+              {% endfor %}
           </ul>
-          <button class="but-nope">X</button>
-          <button class="but-yay">✔</button>
+          <button class="but-nope"></button>
+          <button class="but-yay"></button>
         </div>
 
         <script>
@@ -342,13 +386,14 @@
                 }
             });
             document.body.addEventListener('deckempty', function(ev) {
-                var container = ev.detail.container;
-                var list = container.querySelector('.cardlist');
-                var out = '<li class="card current">#1</li>';
-                for (var i = 2; i < 6; i++) {
-                  out += '<li class="card">#' + i + '</li>';
-                }
-                list.innerHTML = out;
+                    window.location = "/explore";
+                //var container = ev.detail.container;
+                //var list = container.querySelector('.cardlist');
+                //var out = '<li class="card current">#1</li>';
+                //for (var i = 2; i < 6; i++) {
+                //  out += '<li class="card">#' + i + '</li>';
+                //}
+                //list.innerHTML = out;
             });
         </script>
     </body>
