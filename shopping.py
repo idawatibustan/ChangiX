@@ -1,72 +1,37 @@
 #!/usr/bin/env python
+import json
 
 class Shopping:
-    def __init__(self, cps):
-        self.shoppes = []
-        self.items = []
-        self.checkretail(cps)
-        self.status = None
+    def __init__(self, checkpoints_liked):
+        retail_checkpoints = filter(lambda cp: cp['category']=='Retail', checkpoints_liked)
+        self.shop_items = self._process(retail_checkpoints)
+        self.bought = []
 
-    def hasretail(self):
-        if len(shoppes) == 0:
-            return False
-        return True
+    def _process(self, retail_checkpoints):
+        if retail_checkpoints:
+            catalog = json.loads(open("json/catalog.json").read())
+            shop_names = [chp['name'] for chp in retail_checkpoints]
+            items = []
+            for shop_name in shop_names:
+                items.extend(catalog[shop_name])
+            items = sorted(items, key=lambda x: x['price'], reverse=True)
+            return items
+        return None
 
-    def checkretail(self, cps):
-        for cp in cps:
-            if cp.category == 'Retail':
-                self.shoppes.append(cp.name)
+    def buy(self, item):
+        self.bought.append(item)
 
-    def loaditems(self):
-        for shop in self.shoppes:
-            items = shop.top_five()
-
-class Purchases:
-    def __init__(self):
-        self.status = None
-        # processed, dispatched, delivered
-        self.items = []
-        self.totalprice = 0.00
-
-    def additem(self, item):
-        self.items.append(item)
-        self.totalprice += item.price
-
-    def checkout(self):
-        self.status = 'processed'
-        return self.totalprice
-
-    def isprocessed():
-        return self.status == 'processed'
-
-    def isdispatched():
-        return self.status == 'dispatched'
-
-    def isdelivered():
-        return self.status == 'delivered'
-
-class Shop:
-    def __init__(self):
-        self.name = None
-        self.items = []
-    
-    def populate_items(self):
-        self.items = [{
-            Item('Chanel', 'Coco Au De Perfume', 72.00, 'img\\1.jpg'),
-            Item('DKNY', 'Fresh Blossom 100ml', 69.00, ''),
-            Item('Lancome' 'Miracle', 99.00, ''),
-            Item('Yves Saint Laurent','Black Opium EDP', 105.00, ''),
-            Item('Marc Jacobs', 'Daisy EDT', 93.00, ''),
-        }]
-
-    def top_five(self):
-        return self.items[0:4]
-
-class Item:
-    def __init__(self, brand, name, price, image):
-        self.brand = None
-        self.name = None
-        self.price = None
-        self.image = None
-        self.status = 'standard'
-        #promo, exclusive, standard
+    def get_list(self, top=5):
+        lst = []
+        curr_count = 0
+        if self.shop_items:
+            for item in self.shop_items:
+                curr_count += 1
+                status = 'bought' if item in self.bought else 'not_bought'
+                item['status'] = status
+                lst.append(item)
+                if curr_count == top:
+                    return lst
+                elif curr_count > top:
+                    raise Exception("How in the world did this happen")
+        return None
