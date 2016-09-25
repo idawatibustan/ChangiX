@@ -1,7 +1,7 @@
 import requests
 
 # Read the api key
-with open('sitakeys/flightinfoapikey.text') as key:
+with open('sitakeys/flightinfoapikey.txt') as key:
     sitakey = key.readline().strip()
 
 url_flights = 'https://flifo-qa.api.aero/flifo/v3/flights'
