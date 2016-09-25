@@ -28,11 +28,11 @@ class Passenger:
         self.flightnum = b.get('flightnum', "956")
         # self.date = b.get('date', '1')
         self.seat = b.get('seat', "1A")
-        self.seq = b.get('seq', "56")
+        self.seq = b.get('seq')
 
         self.starttime = datetime.now()
         # Populate location
-        # self.startloc = None
+        self.startgate = "B3"
         # self.currloc = None
         # if raw_barcode_string is None: # Demo
         #     self.startloc = None # Put some demo data
@@ -41,28 +41,20 @@ class Passenger:
         # Fetch from Airport API
         self.originname = None
         self.destname = None
-        # if raw_barcode_string is None: # Demo
-        #     self.originname = 'Singapore Changi'
-        #     self.destname = 'Jakarta-Soekarno-Hatta Int\'l'
-        # else:
-        #     self.updateairportname()
+        self.updateairportname()
 
         # Populate flight status
         self.boardtime = None
         self.depttime = None
         self.gate = None
-        # if raw_barcode_string is None: # Demo
-        #     self.boardtime = datetime.now() # Put some demo data
-        #     self.depttime = datetime.now() # Put some demo data
-        #     self.gate = "34"
-        # else:
-        #     self.updateflight()
+        self.updateflight()
 
     def updateflight(self):
         # Only called when data is read from real barcode
         f = get_departing_info_by_flight_num(self.origin, self.airlines, self.flightnum)
-        self.boardtime = f.get('scheduled_time', 'info unavailable')
-        self.depttime = f.get('scheduled_time', 'info unavailable')
+        fmt = "%Y-%m-%dT%H:%M:%S"
+        self.boardtime = datetime.strptime(f.get('scheduled_time', 'info unavailable')[:18], fmt)
+        self.depttime = datetime.strptime(f.get('scheduled_time', 'info unavailable')[:18], fmt)
         self.gate = f.get('gate', 'info unavailable')
         if self.gate is None:
             self.gate = "info unavailable"
