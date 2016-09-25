@@ -23,8 +23,8 @@ def helper(passenger):
     stack = []
     stack.append({
         'time': curr_time.strftime("%H:%M"),
-        'title': 'Arrival Gate {}'.format(arrival['gate']),
-        'subtitle': '{} from {}'.format(arrival['flight'], arrival['from'])
+        'title': 'Departure Gate {}'.format(dest['gate']),
+        'subtitle': '{} to {}'.format(dest['flight'], dest['to'])
     })
 
     for chk in checkpoints:
@@ -38,8 +38,8 @@ def helper(passenger):
 
     stack.append({
         'time': (curr_time - timedelta(minutes=randint(30,80))).strftime("%H:%M"),
-        'title': 'Departure Gate {}'.format(dest['gate']),
-        'subtitle': '{} to {}'.format(dest['flight'], dest['to'])
+        'title': 'Arrival Gate {}'.format(arrival['gate']),
+        'subtitle': '{} from {}'.format(arrival['flight'], arrival['from'])
     })
     return [i for i in reversed(stack)]
 
