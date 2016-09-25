@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 {% block body %}
+<style>
+	.pass {
+		width:60%;
+		padding-top: 30px;
+		padding-right: 20px;
+		text-align: left;
+		color:#fff;
+	}
+</style>
 <section class="chances">
-	<a href="/logout"><img src="img/bg-profile.jpg" style="width=100%;"></a>
+	<a href="/logout"><img src="img/bg-profile.jpg" style="width:100%;"></a>
+	<div class="pass">
+	<p style="font-size:1.1em;">{{ data["first_name"] }} {{ data["last_name"] }}
+	</p>
+	<p>Transit from KOR to CGK<br>Gate {{ data["gate"] }} @ {{ data["board_time"] }}<br>Time in transit: {{ data["time_to_board"] }} hours</p>
+	</div>
 </section>
 {% endblock %}
