@@ -1,11 +1,153 @@
 {% extends "base.html" %}
 {% block body %}
+<style>
+    .step {
+        margin: 0;
+        padding: 0 15px 0 30px;
+        width: calc(100% - 45px);
+        height: 80px;
+        position: relative;
+    }
+    .step > * {
+        position: absolute;
+    }
+    .step .time {
+        top: 5px;
+        left: 50px;
+        font-size: 20px;
+    }
+    .step .step_content {
+        top: 0px;
+        left: 120px;
+    }
+    .step .step_content > * {
+        display: block;
+    }
+    .step_desc {
+        font-size: 14px;
+    }
+    .connector {
+        display: block;
+        position: relative;
+    }
+    .connector > * {
+        display: block;
+        position: absolute;
+    }
+    .circle {
+        z-index: 2;
+        background: #fff;
+    }
+    .circle.middle {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        border: 3px solid #c767dd;
+        margin-left: -15px;
+        margin-top: 7px;
+    }
+    .circle.first, .circle.last {
+        width: 25px;
+        height: 25px;
+        border-radius: 20px;
+        border: 3px solid #e49f3f;
+        margin-left: -20px;
+        margin-top: 1px;
+    }
+    .line {
+        height: 75px;
+        margin-left: -5px;
+        margin-top: 20px;
+        width: 1px;
+        border-left: 1px solid #ccc;
+        z-index: 0;
+    }
+    .retail {
+        height: 210px;
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .scroll_container {
+        max-width: none;
+        width: 800px;
+    }
+    .item {
+        margin: 0 10px;
+        width: 130px;
+        height: 200px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        display: inline-block;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .item .price {
+        display: block;
+        font-size: 20px;
+        color: #8e8e8e;
+        width: 100%;
+        text-align: center;
+    }
+    .item a {
+        display: inline-block;
+        width: 50px;
+        text-decoration: none;
+        color: #fff;
+        background: #e49f3f;
+        border-radius: 5px;
+        padding: 2px;
+        margin-top: 10px;
+    }
+</style>
 <section class="map">
     <img src="https://github.com/kyleissuper/cag-hack/raw/master/img/3d.png" style="width: 100%">
 </section>
 <section class="itinerary">
+    {% for step in data["objects"] %}
+    {% if step["title"] != "Cosmetics & Perfumes by The Shilla" %}
+    <div class="step">
+        <span class="time">{{ step["time"] }}</span>
+        <div class="step_content">
+            <span class="step_title">{{ step["title"] }}</span>
+            <span class="step_desc">{{ step["subtitle"] }}</span>
+        </div>
+        <span class="connector">
+        {% if loop.first %}
+            <span class="circle first"></span>
+            <span class="line"></span>
+        {% elif loop.last %}
+            <span class="circle last"></span>
+        {% else %}
+            <span class="circle middle"></span>
+            <span class="line"></span>
+        {% endif %}
+        </span>
+    </div>
+    {% endif %}
+    {% endfor %}
 </section>
+<h2 style="text-align: center; color: #8e8e8e; font-weight: normal;">
+    Hand picked, just for you
+    <div style="width: 100%; height: 4px; background: linear-gradient(-135deg, #E4A03B 0%, #C867E0 100%);"></div>
+</h2>
 <section class="retail">
-    <!-- Powered by Savioke -->
+    <div class="scroll_container">
+    {% for item in data["shopping"] %}
+    <div class="item">
+        <div style="margin: 10px; width: 115px; height: 100px; background: url('{{ item["image_url"] }}'); background-size: cover; background-position: center center;"></div>
+        <span class="price">${{ item["price"] }}0</span>
+            {% if item["price"] == 72.0 %}
+                <a href="/item" style="background: #c967e0">
+                    Status
+                </a>
+            {% else %}
+                <a href="/item">
+                    Buy
+                </a>
+            {% endif %}
+    </div>
+    {% endfor %}
+    </div>
 </section>
+<img src="https://github.com/kyleissuper/cag-hack/raw/master/img/savioke.jpg" height="25" style="float: right;">
 {% endblock %}
