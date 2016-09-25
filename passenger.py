@@ -4,9 +4,19 @@ from airportapihelper import *
 from flightinfoapihelper import *
 
 class Passenger:
-    def __init__(self, raw_barcode_string):
+    def __init__(self, info, demo = False):
         # For demo, raw_barcode_string is None
-        b = barcode_decoder(raw_barcode_string)
+        self.is_demo = demo
+        if not self.is_demo:
+            self.id_type = info.get('id_type')
+            if self.id_type == "barcode":
+                b = barcode_decoder(info.get('data'))
+            elif self.id_type == "booking_ref":
+                b = bookref_retriever('data')
+            else:
+                b = barcode_decoder(None)
+        else:
+            b = barcode_decoder(None)
 
         # Info from barcode
         self.uid = "432"
@@ -15,39 +25,38 @@ class Passenger:
         self.origin = b.get('origin', "SIN")
         self.dest = b.get('destination', "CGK")
         self.airlines = b.get('airlines', "SQ")
-        self.flightnum = b.get('flightnum', "958")
-        self.date = b.get('date', '1')
-        self.seat = b.get('seat', '1A')
-        self.seq = b.get('seq', '23')
+        self.flightnum = b.get('flightnum', "956")
+        # self.date = b.get('date', '1')
+        self.seat = b.get('seat', "1A")
+        self.seq = b.get('seq', "56")
 
         self.starttime = datetime.now()
-
         # Populate location
-        self.startloc = None
-        self.currloc = None
-        if raw_barcode_string is None: # Demo
-            self.startloc = None # Put some demo data
-            self.currloc = None # Put some demo data
+        # self.startloc = None
+        # self.currloc = None
+        # if raw_barcode_string is None: # Demo
+        #     self.startloc = None # Put some demo data
+        #     self.currloc = None # Put some demo data
 
         # Fetch from Airport API
         self.originname = None
         self.destname = None
-        if raw_barcode_string is None: # Demo
-            self.originname = 'Singapore Changi'
-            self.destname = 'Jakarta-Soekarno-Hatta Int\'l'
-        else:
-            self.updateairportname()
+        # if raw_barcode_string is None: # Demo
+        #     self.originname = 'Singapore Changi'
+        #     self.destname = 'Jakarta-Soekarno-Hatta Int\'l'
+        # else:
+        #     self.updateairportname()
 
         # Populate flight status
         self.boardtime = None
         self.depttime = None
         self.gate = None
-        if raw_barcode_string is None: # Demo
-            self.boardtime = datetime.now() # Put some demo data
-            self.depttime = datetime.now() # Put some demo data
-            self.gate = "34"
-        else:
-            self.updateflight()
+        # if raw_barcode_string is None: # Demo
+        #     self.boardtime = datetime.now() # Put some demo data
+        #     self.depttime = datetime.now() # Put some demo data
+        #     self.gate = "34"
+        # else:
+        #     self.updateflight()
 
     def updateflight(self):
         # Only called when data is read from real barcode
@@ -59,6 +68,7 @@ class Passenger:
             self.gate = "info unavailable"
 
     def time_to_board(self):
+        self.updateflight()
         return self.boardtime - datetime.now()
 
     def updateairportname(self):
@@ -66,8 +76,25 @@ class Passenger:
         self.originname = get_airport_details_by_code(self.origin).get('name', 'info unavailable')
         self.destname = get_airport_details_by_code(self.dest).get('name', 'info unavailable')
 
+    def get_arrival_gate(self):
+        return {
+            'gate': "str",
+            'time': datetime.now(),
+            'flight': "str",
+            'from': "Seoul"
+        }
+
+    def get_dest_gate(self):
+        self.updateflight()
+        return {
+            'gate': "str",
+            'time': datetime.now(),
+            'flight': "str",
+            'to': "Jakarta"
+        }
+
 def barcode_decoder(raw_barcode_string):
-    if not (raw_barcode_string is None):
+    if raw_barcode_string:
         # As per IATA 2D Boarding pass format. See http://www.iata.org/whatwedo/stb/documents/bcbp_implementation_guidev4_jun2009.pdf
         passenger_name = raw_barcode_string[2:22].strip()
         origin = raw_barcode_string[30:33].strip()
@@ -89,7 +116,10 @@ def barcode_decoder(raw_barcode_string):
                     'seq': seq,
                     'passengerstatus': passengerstatus})
     else:
-        return {}
+        return dict()
+
+def bookref_retriever(data):
+    return barcode_decoder(None)
 
 if __name__ == '__main__':
-    p = Passenger(None)
+    p = Passenger(None, True)
