@@ -72,12 +72,32 @@
             float: left;
             position: relative;
         }
+        nav {
+            display: block;
+            width: 100%;
+            height: 35px;
+            padding: 5px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        nav > img {
+            height: 100%;
+            width: auto;
+        }
+        nav > a {
+            color: #8e8e8e;
+            text-decoration: none;
+            float: right;
+            padding: 10px 20px 0 0;
+        }
     </style>
 </head>
 <body>
     <nav>
         <img src="http://bintan-resorts.com/visitors/wp-content/uploads/sites/3/2014/03/CHS_CMYK_Pos-copy1.jpg">
     {% if "passenger" in session %}
+        <a href="/logout">Logout</a>
+        <a href="/win"{% if request.endpoint == "/win" %} class="active"{% endif %}>Win</a>
+        <a href="/explore"{% if request.endpoint == "/explore" %} class="active"{% endif %}>Explore</a>
     {% endif %}
     </nav>
     {% block body %}

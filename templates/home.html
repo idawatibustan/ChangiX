@@ -10,7 +10,6 @@
 </section>
 <div id="barcode_scanner" class="lightbox">
     <!--<a href="#" class="toggle_video">Toggle video</a>-->
-    <a href="#" class="capture_image">Capture image</a>
     <video id="video" autoplay></video>
     <button id="snap">Snap Photo</button>
     <canvas id="canvas"></canvas>
@@ -41,7 +40,7 @@ document.querySelector(".lightbox_link").addEventListener("click", function(evt)
         });
     }
 });
-document.querySelector(".capture_image").addEventListener("click", function(evt) {
+function capture() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -57,6 +56,9 @@ document.querySelector(".capture_image").addEventListener("click", function(evt)
         context.drawImage(video, 0, 0, video.offsetWidth, video.offsetHeight);
         var data = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "");
         xhttp.send(data);
+}
+document.querySelector(".lightbox_link").addEventListener("click", function(evt) {
+        var interval = setInterval(capture, 5000);
         });
 //document.querySelector(".toggle_video").addEventListener("click", function(evt) {
 //    toggle = (( toggle == 0 ) ? 1 : 0);

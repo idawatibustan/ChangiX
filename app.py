@@ -48,10 +48,13 @@ def scan():
 @app.route("/login")
 #def login(id_type, data):
 def login():
+    # ADD LOGIC FOR FAKE LOGIN
     url = request.url
+    session["demo"] = True
     passenger = Passenger({
         "id_type": url.split("id_type=")[1].split("&")[0],
-        "data": url.split("data=")[1]
+        "data": url.split("data=")[1],
+        "demo": False
         })
     session["passenger"] = passenger.uid
     with open("pickle/"+passenger.uid+".pickle", "wb") as f:
@@ -108,6 +111,7 @@ def swipe(demo):
 
 @app.route("/explore")
 def explore():
+    data = {}
     return render_template("explore.html", data=data)
 
 http_server = WSGIServer(("", PORT), app)
