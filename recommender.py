@@ -57,6 +57,12 @@ class Recommender:
                     "subcategory": "Beauty & Wellness",
                     "description": "Satisfy your desire for wellness and relaxation. Recharge with a massage, shower, manicure and more.",
                     "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png"
+                }, {
+                    "category": "Retail",
+                    "name": "Cosmetics & Perfumes by The Shilla",
+                    "subcategory": "Cosmetics",
+                    "description": "Cosmetics & Perfumes by The Shilla Duty Free stocks the widest ranges of beauty and skincare brands in Singapore and Asia-Pacific airports.",
+                    "image_url": "http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/cosmetics---perfumes-by-shilla.img.png"
                 }
             ]
 
