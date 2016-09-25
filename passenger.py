@@ -42,12 +42,10 @@ class Passenger:
                     'gate': "5D" })
 
 def barcode_decoder(id):
-    id = id.split(" ")
-    parsed = []
+    id = id.split()
+    print id
     for i in id:
-        if len(i) > 0:
-            parsed.append(i)
-    print parsed
+        #parse i here = just harcode the format
 
     return dict({'firstname': "Janet",
                 'lastname': "Lee",
