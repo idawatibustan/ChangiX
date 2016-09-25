@@ -15,6 +15,8 @@
     <canvas id="canvas"></canvas>
 </div>
 <div id="enter_code" class="lightbox">
+    <input type="text">
+    <a href="/login?demo">Login</a>
 </div>
 <script>
 var mediaSources = [],
@@ -44,7 +46,11 @@ function capture() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
+                var response = JSON.parse(this.responseText),
+                    status_type = response["status"];
+                if (status_type == "Success") {
+                    window.location = "/login?id_type=barcode&data="+response["data"];
+                }
             }
         };
         xhttp.open("POST", "/scan", true);

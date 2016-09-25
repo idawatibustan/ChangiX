@@ -48,19 +48,22 @@ def scan():
 @app.route("/login")
 #def login(id_type, data):
 def login():
-    # ADD LOGIC FOR FAKE LOGIN
     url = request.url
-    session["demo"] = True
-    passenger = Passenger({
-        "id_type": url.split("id_type=")[1].split("&")[0],
-        "data": url.split("data=")[1],
-        "demo": False
-        })
+    if "demo" not in url:
+        session["demo"] = False
+        passenger = Passenger({
+            "id_type": url.split("id_type=")[1].split("&")[0],
+            "data": url.split("data=")[1],
+            "demo": False
+            })
+    else:
+        session["demo"] = True
+        passenger = Passenger({
+            "demo": True
+            })
     session["passenger"] = passenger.uid
     with open("pickle/"+passenger.uid+".pickle", "wb") as f:
         pickle.dump(passenger, f)
-    ## ADD CONDITION for failed login
-    print session["passenger"]
     return redirect(url_for("welcome"))
 
 @app.route("/welcome")
