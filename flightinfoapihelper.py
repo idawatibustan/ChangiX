@@ -27,13 +27,16 @@ def get_departing_info_by_flight_num(depart_airport_code, airline_code, flight_n
     arrival_city = r['flightRecord'][0]['city']
     flight_duration_mins = r['flightRecord'][0]['duration']
     terminal = r['flightRecord'][0]['terminal']
+    gate = None
+    if ('gate' in r['flightRecord'][0].keys()): # Sometimes gate field is missing
+        gate = r['flightRecord'][0]['gate']
     flight_details = {'airport_code': airport_code,
     'airline': airline, 'airline_code': airline_code,
     'flight_number': flight_number, 'flight_date': flight_date,
     'arrival_airport_code': arrival_airport_code, 'aircraft_model': aircraft_model,
     'status_code': status_code, 'status': status, 'scheduled_time': scheduled_time,
     'arrival_city': arrival_city, 'flight_duration_mins': flight_duration_mins,
-    'terminal': terminal}
+    'terminal': terminal, 'gate': gate}
     return flight_details
 
 # Get the flight records on the current day for next 4 hours
