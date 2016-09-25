@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Passenger:
     def __init__(self, id):
-        b = self.barcode_reader(id)
+        b = barcode_decoder("M1LEE/JUHO            E8EKVV7 SINHKGCX 0710 209Y056K0224 34A&gt;1180      B                29                                         8")
 
         self.uid = "432"
         self.firstname = b.get('firstname', "Jane")
@@ -33,18 +33,33 @@ class Passenger:
         self.depttime = f.get('departtime')
         self.gate = f.get('gate')
 
-    def barcode_reader(self, id):
-        return dict({'firstname': "Janet",
-                    'lastname': "Lee",
-                    'origin': "KOR",
-                    'destination': "SIN",
-                    'airlines': "SQ",
-                    'flightnum': "316",
-                    'date': "25Sept",
-                    'seat': "1A",
-                    'seq': 23 })
+    def time_to_board(self):
+        return self.boardtime - datetime.now()
 
     def flight_reader(self, num):
         return dict({'boardingtime': datetime.now(),
                     'departtime': datetime.now(),
                     'gate': "5D" })
+
+def barcode_decoder(id):
+    id = id.split(" ")
+    parsed = []
+    for i in id:
+        if len(i) > 0:
+            parsed.append(i)
+    print parsed
+
+    return dict({'firstname': "Janet",
+                'lastname': "Lee",
+                'origin': "KOR",
+                'destination': "SIN",
+                'airlines': "SQ",
+                'flightnum': "316",
+                'date': "25Sept",
+                'seat': "1A",
+                'seq': 23 })
+
+if __name__ == '__main__':
+    p = Passenger(None)
+
+#M1LEE/JUHO            E8EKVV7 SINHKGCX 0710 209Y056K0224 34A&gt;1180      B                29                                         8
