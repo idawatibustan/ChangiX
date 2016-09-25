@@ -54,17 +54,17 @@ class Passenger:
         fmt = "%Y-%m-%dT%H:%M:%S"
         self.depttime = datetime.strptime(f.get('scheduled_time', 'info unavailable')[:18], fmt)
         self.boardtime = self.depttime
-        self.gate = f.get('gate', 'info unavailable')
+        self.gate = f.get('gate', 'A8')
         if self.gate is None:
-            self.gate = "info unavailable"
+            self.gate = "A8"
 
     def time_to_board(self):
         self.updateflight()
-        return (self.boardtime - datetime.now()).seconds/60
+        return (self.boardtime - datetime.now()).seconds/3600
 
     def time_to_depart(self):
         self.updateflight()
-        return (self.depttime - datetime.now()).seconds/60
+        return (self.depttime - datetime.now()).seconds/3600
 
     def updateairportname(self):
         # Only called when data is read from real barcode

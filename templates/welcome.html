@@ -1,18 +1,49 @@
 {% extends "base.html" %}
 {% block body %}
+<style>
+    .page {
+        background: linear-gradient(-135deg, #E4A03B 0%, #C867E0 100%);
+        text-align: center;
+    }
+    .welcome {
+        width:100%;
+        color: #fff;
+    }
+
+    .main {
+        width: 100%;
+        color: #fff;
+        padding: 120px 0 120px 0;
+    }
+
+    .button {
+        display: inline-block;
+        width: 180px;
+        height: 60px;
+        padding: 20px;
+        color: #fff;
+        text-decoration: none;
+        background: #606060;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+<div class="page">
 <section class="welcome">
     <h1>Welcome back, {{ data["first_name"] }}!</h1>
 </section>
 <section class="main">
     {% if not session["demo"] %}
-    <p>You departed from Gate {{ data["gate"] }} at {{ data["board_time"] }}, for your flight, {{ data["airline"] }}{{ data["flightnum"] }} to {{ data["destination"] }} some time ago.</p>
+    <p>You departed from <b>Gate {{ data["gate"] }}</b> at <b>{{ data["board_time"] }}</b>, for your flight, <b>{{ data["airline"] }}{{ data["flightnum"] }}</b> to {{ data["destination"] }} some time ago.</p>
     <p>You're probably not checked in at Changi Airport right now :)</p>
-    <a href="/">Go back</a>
+    <a href="/" class="button">Go back</a>
     {% else %}
-    <p>We'll get you to Gate {{ data["gate"] }} by {{ data["board_time"] }}, just in time for your flight, {{ data["airline"] }}{{ data["flightnum"] }} to {{ data["destination"] }}.</p>
-    <p>You have {{ data["time_to_board"] }} hours in transit. Let's make the most of it.</p>
+    <p>We'll get you to Gate <b>{{ data["gate"] }}</b> by <b>{{ data["board_time"] }}</b>, just in time for your flight, <b>{{ data["airline"] }}{{ data["flightnum"] }}</b> to {{ data["destination"] }}.</p>
+    <p>You have <b>{{ data["time_to_board"] }}</b> hours in transit.</p>
+    <p>Let's make the most of it.</p>
     <a href="/swipe/normal" class="button">Explore and win</a>
     <a href="/swipe/demo">Demo</a>
     {% endif %}
 </section>
+</div>
 {% endblock %}
