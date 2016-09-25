@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 {% block body %}
+<style>
+    .video_container {
+        position: relative;
+    }
+    video {
+        width: 100%;
+        display: block;
+    }
+    .video_overlay {
+        position: absolute;
+        border: 1px solid #f00;
+        z-index: 9;
+        top: 150px;
+        left: 50px;
+        width: 230px;
+        height: 80px;
+    }
+</style>
 <section class="welcome">
     <h1>Placeholder title</h1>
 </section>
@@ -10,8 +28,10 @@
 </section>
 <div id="barcode_scanner" class="lightbox">
     <!--<a href="#" class="toggle_video">Toggle video</a>-->
-    <video id="video" autoplay></video>
-    <button id="snap">Snap Photo</button>
+    <div class="video_container">
+        <video id="video" autoplay></video>
+        <div class="video_overlay"></div>
+</div>
     <canvas id="canvas"></canvas>
 </div>
 <div id="enter_code" class="lightbox">
@@ -59,7 +79,7 @@ function capture() {
         canvas.height = video.offsetHeight;
         //canvas.width = 300;
         //canvas.height = 100;
-        context.drawImage(video, 0, 0, video.offsetWidth, video.offsetHeight);
+        context.drawImage(video, 80, 250, 550, 120, 0, 0, 550, 120);
         var data = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "");
         xhttp.send(data);
 }
