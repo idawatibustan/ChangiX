@@ -177,5 +177,13 @@ def logout():
     session.pop("passenger", None)
     return redirect(url_for("home"))
 
+@app.route("/item")
+def item():
+    return render_template("item.html")
+
+@app.route("/win")
+def win():
+    return render_template("win.html")
+
 http_server = WSGIServer(("", PORT), app)
 http_server.serve_forever()
