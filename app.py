@@ -16,7 +16,7 @@ from random import randint
 def helper(passenger):
     arrival = passenger.get_arrival_gate()
     dest = passenger.get_dest_gate()
-    r = Recommender()
+    r = Recommender(demo=True)
     checkpoints = r.recommendations()
 
     curr_time = arrival['time']
@@ -152,14 +152,29 @@ def swipe(demo):
 def explore():
     with open("pickle/"+session["passenger"]+".pickle", "rb") as f:
         passenger = pickle.load(f)
+        arr_gate, dest_gate = passenger.get_arrival_gate(), passenger.get_dest_gate()
+        arr_time, dest_time = arr_gate["time"], dest_gate["time"]
+        arr_gate["time"] = arr_time.strftime("%H:%M")
+        dest_gate["time"] = dest_time.strftime("%H:%M")
+        r = Recommender(demo=True)
+        recs = r.recommendations()
+        print recs
+        s = Shopping(recs)
+        top_list = s.get_list(5)
+        print top_list
         data = {
-                #"arrival": passenger.get_arrival_gate(),
-                #"destination": passenger.get_dest_gate(),
+                "arrival": arr_gate,
+                "destination": dest_gate,
                 "objects": helper(passenger),
-                "shopping": Shopping(Recommender(demo=True).recommendations()).get_list(5)
+                "shopping": top_list
                 }
-    print json.dumps(data)
+    print json.dumps(data, indent=4)
     return render_template("explore.html", data=data)
+
+@app.route("/logout")
+def logout():
+    session.pop("passenger", None)
+    return redirect(url_for("home"))
 
 http_server = WSGIServer(("", PORT), app)
 http_server.serve_forever()

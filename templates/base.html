@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
+            display: block;
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
+            font-family: 'Segoe UI Light', 'Segoe UI', 'Helvetica Neue', 'Helvetica', sans-serif;
+            width: 100%;
+            overflow-x: hidden;
         }
         .darken {
             z-index: 998;
             display: none;
-            position: absolute;
+            position: fixed;
             height: 100%;
             width: 100%;
             left: 0;
@@ -27,6 +30,7 @@
             width: calc(100% - 50px);
             left: 25px;
             top: 25px;
+            position: fixed;
             border-radius: 5px;
             border: 1px solid #000;
             background: #fff;
@@ -79,9 +83,13 @@
             padding: 5px;
             border-bottom: 1px solid #dbdbdb;
         }
-        nav > img {
+        nav > a.img {
             height: 100%;
-            width: auto;
+            float: left;
+            padding: 0;
+        }
+        nav > a.img > img {
+            height: 100%;
         }
         nav > a {
             color: #8e8e8e;
@@ -104,7 +112,7 @@
 </head>
 <body>
     <nav>
-        <a href="/">
+        <a href="/" class="img">
         <img src="http://bintan-resorts.com/visitors/wp-content/uploads/sites/3/2014/03/CHS_CMYK_Pos-copy1.jpg">
         </a>
     {% if "passenger" in session %}

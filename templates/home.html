@@ -17,14 +17,44 @@
         width: 230px;
         height: 80px;
     }
+    .main, .welcome {
+        text-align: center;
+        padding: 50px 0 50px 0;
+    }
+    .main {
+        width: 100%;
+        color: #fff;
+        background: linear-gradient(-135deg, #E4A03B 0%, #C867E0 100%);
+    }
+    .main > .lightbox_link {
+        display: inline-block;
+        width: 180px;
+        height: 180px;
+        padding: 20px;
+        color: #fff;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        text-align: center;
+    }
+    .main > .lightbox_link:nth-of-type(1) {
+    }
+    .main > .lightbox_link:nth-of-type(2) {
+    }
 </style>
 <section class="welcome">
-    <h1>Placeholder title</h1>
+    <h1>Welcome to Changi Airport!</h1>
+    <p>Explore all that Changi has to offer, and stand to win a million dollars.</p>
 </section>
 <section class="main">
     <h2>Choose an option</h2>
-    <a href="#barcode_scanner" class="lightbox_link">Camera</a>
-    <a href="#enter_code" class="lightbox_link">Enter code</a>
+    <a href="#barcode_scanner" class="lightbox_link">Scan your boarding pass
+        <p><img src="https://github.com/kyleissuper/cag-hack/raw/master/img/camera.png" style="width: 100px; margin-top: 10px;"></p>
+    </a>
+    <p><b>or</b></p>
+    <a href="#enter_code" class="lightbox_link">Enter your booking reference number
+        <p style="display: block; width: 117px; height: 20px; border: 1px solid #fff; border-radius: 2px; background: rgba(0, 0, 0, 0.5); margin: 30px 0 0 30px">*****</p>
+    </a>
 </section>
 <div id="barcode_scanner" class="lightbox">
     <!--<a href="#" class="toggle_video">Toggle video</a>-->
