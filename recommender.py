@@ -80,11 +80,13 @@ def generate_checkpoints(is_demo):
 
 if __name__=="__main__":
     r = Recommender(None, demo=False)
-    r.dislike_checkpoint({'category':'Retail'})
     boo = True
+    r.dislike_checkpoint({'category':"Food"})
+    r.dislike_checkpoint({'category':'Leisure'})
     while boo:
         cc = r.checkpoint_info()
         if not cc:
             boo = False
         else:
-            print cc['name']
+            r.like_checkpoint(cc)
+    print r.recommendations()
