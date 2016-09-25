@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="welcome">
+    <h1>Welcome back, {{ data["first_name"] }}!</h1>
+</section>
+<section class="main">
+    <p>We'll get you to Gate {{ data["gate"] }} by {{ data["board_time"] }}, just in time for your flight, {{ data["airline"] }}{{ data["flightnum"] }} to {{ data["destination"] }}.</p>
+    <p>You have {{ data["time_to_board"] }} hours in transit. Let's make the most of it.</p>
+    <a href="/swipe/normal" class="button">Explore and win</a>
+    <a href="/swipe/demo">Demo</a>
+</section>
+{% endblock %}

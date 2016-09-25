@@ -14,17 +14,24 @@ class Recommender:
         self.checkpoints_liked = []
         self.categories_disliked = []
         checkpoints = generate_checkpoints(demo)
+        self.checkpoints = checkpoints
         self.q = self._sort(checkpoints)
 
     def checkpoint_info(self):
         return None if self.q.empty() else self.q.get()
 
-    def like_checkpoint(self, checkpoint):
-        self.checkpoints_liked.append(checkpoint)
+    def like_checkpoint(self, name):
+        for checkpoint in self.checkpoints:
+            if name == checkpoint['name']:
+                self.checkpoints_liked.append(checkpoint)
+                break
 
-    def dislike_checkpoint(self, checkpoint):
-        category = checkpoint['category']
-        self.categories_disliked.append(category)
+    def dislike_checkpoint(self, name):
+        for checkpoint in self.checkpoints:
+            if name == checkpoint['name']:
+                category = checkpoint['category']
+                self.categories_disliked.append(category)
+                break
 
         # create new queue without the disliked category
         new_q = Queue()
@@ -81,12 +88,11 @@ def generate_checkpoints(is_demo):
 if __name__=="__main__":
     r = Recommender(None, demo=False)
     boo = True
-    r.dislike_checkpoint({'category':"Food"})
-    r.dislike_checkpoint({'category':'Leisure'})
+    r.dislike_checkpoint('Burger King')
     while boo:
         cc = r.checkpoint_info()
         if not cc:
             boo = False
         else:
-            r.like_checkpoint(cc)
+            r.like_checkpoint(cc['name'])
     print r.recommendations()
