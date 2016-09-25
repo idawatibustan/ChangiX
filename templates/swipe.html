@@ -5,11 +5,11 @@
         <style type="text/css">
             /* Design of a card */
             .card {
-              font-size: 14px;
-              line-height: 200px;
-              text-align:center;
-              width: 150px;
-              height: 200px;
+              /*font-size: 14px;*/
+              /*line-height: 200px;*/
+              /*text-align:center;*/
+              width: 300px;
+              height: 400px;
               display: block;
               background: #666;
               -webkit-transform-origin: 50% 99%;
@@ -18,7 +18,8 @@
             .cardcontainer {
               padding: 10px;
               text-align: center;
-              width: 150px;
+              width: 300px;
+              margin: 0 auto;
             }
 
             /* List functionality */
@@ -187,17 +188,45 @@
 
         <div class="cardcontainer list">
           <ul class="cardlist">
-      {% for card in data["checkpoint_info"] %}
-      <li class="card{% if loop.first %} current{% endif %}">
-                <div>
-                    <img src="{{ card["image_url"] }}">
-                    <span class="s_name">{{ card["name"] }}</span>
-                    <span class="s_category">{{ card["category"] }}</span>
-                    <span class="s_subcategory">{{ card["subcategory"] }}</span>
-                    <span class="s_description">{{ card["description"] }}</span>
-                </div>
-      </li>
-      {% endfor %}
+              <li class="card current">
+                  <div>
+                      <div>
+                          <img src="http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png" style="object-fit:cover; width:100%; height:auto;" />
+                      </div>
+                      <div style="text-align:left; width:90%; margin: 1 auto;">
+                          <h3>Airport Wellness Oasis</h3>
+                          <h5>Beauty & Wellness</h5>
+                          <p>
+                              Satisfy your desire for wellness and relaxation. Recharge with a massage, shower, manicure and more.
+                          </p>
+                      </div>
+                  </div>
+              </li>
+              <li class="card">
+                  <div>
+                      <div>
+                          <img src="http://www.changiairport.com/content/cag/en/shop-and-dine/shopping/airport-wellness-oasis.img.png" style="object-fit:cover; width:100%; height:auto;" />
+                      </div>
+                      <div style="text-align:left; width:90%; margin: 1 auto;">
+                          <h3>Airport Wellness Oasis</h3>
+                          <h5>Beauty & Wellness</h5>
+                          <p>
+                              Satisfy your desire for wellness and relaxation. Recharge with a massage, shower, manicure and more.
+                          </p>
+                      </div>
+                  </div>
+              </li>
+              <!-- {% for card in data["checkpoint_info"] %}
+              <li class="card{% if loop.first %} current{% endif %}">
+                        <div>
+                            <img src="{{ card["image_url"] }}">
+                            <span class="s_name">{{ card["name"] }}</span>
+                            <span class="s_category">{{ card["category"] }}</span>
+                            <span class="s_subcategory">{{ card["subcategory"] }}</span>
+                            <span class="s_description">{{ card["description"] }}</span>
+                        </div>
+              </li>
+              {% endfor %} -->
           </ul>
           <button class="but-nope">X</button>
           <button class="but-yay">✔</button>
