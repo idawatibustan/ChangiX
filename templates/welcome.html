@@ -4,7 +4,7 @@
     <h1>Welcome back, {{ data["first_name"] }}!</h1>
 </section>
 <section class="main">
-    {% if session["demo"] %}
+    {% if not session["demo"] %}
     <p>You departed from Gate {{ data["gate"] }} at {{ data["board_time"] }}, for your flight, {{ data["airline"] }}{{ data["flightnum"] }} to {{ data["destination"] }} some time ago.</p>
     <p>You're probably not checked in at Changi Airport right now :)</p>
     <a href="/">Go back</a>

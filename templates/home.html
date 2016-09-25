@@ -84,7 +84,8 @@ function capture() {
         xhttp.send(data);
 }
 document.querySelector(".lightbox_link").addEventListener("click", function(evt) {
-        var interval = setInterval(capture, 5000);
+        //var interval = setInterval(capture, 5000);
+        capture();
         });
 //document.querySelector(".toggle_video").addEventListener("click", function(evt) {
 //    toggle = (( toggle == 0 ) ? 1 : 0);

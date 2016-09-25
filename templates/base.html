@@ -88,16 +88,29 @@
             text-decoration: none;
             float: right;
             padding: 10px 20px 0 0;
+            position: relative;
+        }
+        nav > a.active::before {
+            display: block;
+            content: "";
+            height: 4px;
+            background: linear-gradient(-135deg, #E4A03B 0%, #C867E0 100%);
+            position: absolute;
+            bottom: -5px;
+            left: -10px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <nav>
+        <a href="/">
         <img src="http://bintan-resorts.com/visitors/wp-content/uploads/sites/3/2014/03/CHS_CMYK_Pos-copy1.jpg">
+        </a>
     {% if "passenger" in session %}
         <a href="/logout">Logout</a>
-        <a href="/win"{% if request.endpoint == "/win" %} class="active"{% endif %}>Win</a>
-        <a href="/explore"{% if request.endpoint == "/explore" %} class="active"{% endif %}>Explore</a>
+        <a href="/win"{% if request.endpoint == "win" %} class="active"{% endif %}>Win</a>
+        <a href="/explore"{% if request.endpoint == "explore" %} class="active"{% endif %}>Explore</a>
     {% endif %}
     </nav>
     {% block body %}

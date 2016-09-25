@@ -11,6 +11,37 @@ from flask import Flask, render_template, request, send_file, redirect, url_for,
 from gevent.wsgi import WSGIServer
 from settings import *
 
+from datetime import datetime, timedelta
+from random import randint
+def helper(passenger):
+    arrival = passenger.get_arrival_gate()
+    dest = passenger.get_dest_gate()
+    r = Recommender()
+    checkpoints = r.recommendations()
+
+    curr_time = arrival['time']
+    stack = []
+    stack.append({
+        'time': curr_time.strftime("%H:%M"),
+        'title': 'Arrival Gate {}'.format(arrival['gate']),
+        'subtitle': '{} from {}'.format(arrival['flight'], arrival['from'])
+    })
+
+    for chk in checkpoints:
+        d = {}
+        curr_time = curr_time - timedelta(minutes=randint(15,60))
+        d['time'] = curr_time.strftime("%H:%M")
+        d['title'] = chk['name']
+        max_char = 50 # KYLE: change to vary maximum characters allowed
+        d['subtitle'] = chk['description'][:max_char] + '...'
+
+    stack.append({
+        'time': (curr_time - timedelta(minutes=randint(30,80))).strftime("%H:%M"),
+        'title': 'Departure Gate {}'.format(dest['gate']),
+        'subtitle': '{} to {}'.format(dest['flight'], dest['to'])
+    })
+    return [i for i in reversed(stack)]
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24).encode("hex")
 app._static_folder = "static/"
@@ -119,7 +150,15 @@ def swipe(demo):
 
 @app.route("/explore")
 def explore():
-    data = {}
+    with open("pickle/"+session["passenger"]+".pickle", "rb") as f:
+        passenger = pickle.load(f)
+        data = {
+                #"arrival": passenger.get_arrival_gate(),
+                #"destination": passenger.get_dest_gate(),
+                "objects": helper(passenger),
+                "shopping": Shopping(Recommender(demo=True).recommendations()).get_list(5)
+                }
+    print json.dumps(data)
     return render_template("explore.html", data=data)
 
 http_server = WSGIServer(("", PORT), app)
