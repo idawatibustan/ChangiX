@@ -23,6 +23,11 @@ def home():
 @app.route("/scan", methods=["GET", "POST"])
 def scan():
     if request.method == "POST":
+        return json.dumps({
+            "status": "Success",
+            #"data": "M1LEE/JUHO%20%20%20%20%20%20%20%20%20%20%20%20E8EKVV7%20SINHKGCX%200710%20209Y056K0224%2034A&gt;1180%20%20%20%20%20%20B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2029%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%208"
+            "data": "M1LEE/JUHO            E8EKVV7 HKGSFOCX 0870 209Y049E0167 34A&gt;1180      B                29                                         8"
+            })
         img = base64.b64decode(request.data)
         open("file.png", "w").write(img)
         files = {"media": open("file.png", "rb")}
